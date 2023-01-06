@@ -47,7 +47,11 @@ namespace ByteBank.Entities
         {
             Console.Clear();
 
+            Console.ForegroundColor = ConsoleColor.Yellow;
+
             Console.WriteLine("1 - CADASTRAR NOVO USUÁRIO\n");
+
+            Console.ResetColor();
 
             Console.Write("Digite o número de CPF: \n");
 
@@ -55,19 +59,15 @@ namespace ByteBank.Entities
 
             ValidarCpf(cpf);
 
-            Console.Write("Digite o nome do Usuário: \n");
+            Console.Write("\nDigite o nome do Usuário: \n");
 
             string titular = Console.ReadLine();
 
-            Console.WriteLine("Digite seu E-mail para login: ");
-
-            string email = Console.ReadLine();
-
-            Console.Write("Escolha uma senha com 4 dígitos: \n");
+            Console.Write("\nEscolha uma senha com 4 dígitos: \n");
 
             string senha = Console.ReadLine();
 
-            Console.Write("Digite a quantia a ser depositada: \n");
+            Console.Write("\nDigite a quantia a ser depositada: \n");
 
             double saldo = double.Parse(Console.ReadLine());
 
@@ -77,11 +77,11 @@ namespace ByteBank.Entities
 
 
 
-            Clientes.Add(new DadosBancarios(titular, cpf, senha, saldo, conta, email));
+            Clientes.Add(new DadosBancarios(titular, cpf, senha, saldo, conta));
 
             Console.ForegroundColor = ConsoleColor.Green;
 
-            Console.WriteLine("Usuário cadastrado com sucesso.\n");
+            Console.WriteLine("\nUsuário cadastrado com sucesso.");
 
             DadosBancarios Buscar = Clientes.Find(x => x.Cpf == cpf);
 
@@ -131,9 +131,13 @@ namespace ByteBank.Entities
         {
             Console.Clear();
 
+            Console.ForegroundColor = ConsoleColor.Yellow;
+
             Console.WriteLine("2 - DELETAR USUÁRIO \n");
 
-            Console.WriteLine("Por favor, digite o CPF do usuário a ser deletado: ");
+            Console.ResetColor();
+
+            Console.WriteLine("\nPor favor, digite o CPF do usuário a ser deletado: ");
 
             string UsuarioASerDeletado = Console.ReadLine();
 
@@ -143,9 +147,11 @@ namespace ByteBank.Entities
 
             if (BuscarIndex == -1)
             {
-                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Yellow;
 
                 Console.WriteLine("2 - DELETAR USUÁRIO\n");
+
+                Console.ResetColor();
 
                 Console.ForegroundColor = ConsoleColor.Red;
 
@@ -161,7 +167,7 @@ namespace ByteBank.Entities
             else
             {
 
-                Console.WriteLine("Confirme agora a senha da conta a ser deletada: ");
+                Console.WriteLine("\nConfirme agora a senha da conta a ser deletada: ");
 
                 string senhaAserDeletada = Console.ReadLine();
 
@@ -183,7 +189,7 @@ namespace ByteBank.Entities
                 {
                     Console.ForegroundColor = ConsoleColor.Green;
 
-                    Console.WriteLine($"Usuário {deletar.Titular} deletado com sucesso!");
+                    Console.WriteLine($"\nUsuário {deletar.Titular} deletado com sucesso!");
 
                     Thread.Sleep(3000);
 
@@ -200,7 +206,12 @@ namespace ByteBank.Entities
 
         public static void ListarTodasAsContas(List<DadosBancarios> Clientes)
         {
+
+            Console.ForegroundColor = ConsoleColor.Yellow;
+
             Console.WriteLine(" 3 - LISTAR TODAS AS CONTAS REGISTRADAS\n");
+
+            Console.ResetColor();
 
             foreach (DadosBancarios obj in Clientes)
             {
@@ -209,15 +220,20 @@ namespace ByteBank.Entities
 
 
             }
-            Thread.Sleep(4000);
+            Thread.Sleep(5000);
         }
 
 
         public static void DetalharUsuario(List<DadosBancarios> Clientes)
         {
+
+            Console.ForegroundColor = ConsoleColor.Yellow;
+
             Console.WriteLine("4 - DETALHES DE UM USUÁRIO \n");
 
-            Console.WriteLine("Digite o cpf do usuário a ser detalhado: ");
+            Console.ResetColor();
+
+            Console.WriteLine("\nDigite o cpf do usuário a ser detalhado: ");
 
             string UsuarioDetalhado = Console.ReadLine();
 
@@ -230,11 +246,10 @@ namespace ByteBank.Entities
 
             if (BuscarIndex == -1)
             {
-                Console.WriteLine("4 - DETALHES DE UM USUÁRIO \n");
-
+             
                 Console.ForegroundColor = ConsoleColor.Red;
 
-                Console.WriteLine("Não foi possível apresentar esta Conta");
+                Console.WriteLine("\nNão foi possível apresentar esta Conta");
 
                 Console.WriteLine("MOTIVO: Conta não encontrada.");
 
@@ -245,9 +260,8 @@ namespace ByteBank.Entities
             }
             else
             {
-                Console.WriteLine("4 - DETALHES DE UM USUÁRIO \n");
 
-                Console.WriteLine("Confirme agora a senha da conta a ser detalhada: ");
+                Console.WriteLine("\nConfirme agora a senha da conta a ser detalhada: ");
 
                 string senhaAserDetalhada = Console.ReadLine();
 
@@ -280,7 +294,13 @@ namespace ByteBank.Entities
 
         public static void SomaDeValores(List<DadosBancarios> Clientes)
         {
+
+            Console.ForegroundColor = ConsoleColor.Yellow;
+
             Console.WriteLine("5 - TOTAL ARMAZENADO NO BANCO \n");
+
+            Console.ResetColor();
+
             double soma = 0;
 
             foreach (DadosBancarios obj in Clientes)
@@ -296,11 +316,20 @@ namespace ByteBank.Entities
 
         }
 
+
         public static void ShowMenu2()
         {
             Console.Clear();
 
             Console.ForegroundColor = ConsoleColor.White;
+
+            Console.WriteLine("6 - Transações financeiras \n");
+
+            Console.ForegroundColor = ConsoleColor.Yellow;
+
+            Console.Write("---------------------------------------------------------------------------------------------------------------------\n\n");
+
+            Console.ResetColor();
 
             Console.WriteLine("[1] - Depósito");
 
@@ -316,21 +345,33 @@ namespace ByteBank.Entities
         }
 
 
+
+
         public static void Deposito(List<DadosBancarios> Clientes)
         {
 
             Console.Clear();
 
-            Console.WriteLine("[1]DEPÓSITOn\n");
+            Console.ForegroundColor = ConsoleColor.Yellow;
 
-            Console.WriteLine("Digite o CPF do titular da conta: \n");
+            Console.WriteLine("[1]DEPÓSITO\n");
 
-            String CpfParaDeposito = Console.ReadLine();
+            Console.ResetColor();
 
-            int BuscarIndex = Clientes.FindIndex(x => x.Cpf == CpfParaDeposito);
+            Console.WriteLine("Digite o CPF do titular da conta: ");
 
-            DadosBancarios cpfEncontrado = Clientes.Find(x => x.Cpf == CpfParaDeposito);
+            String cpfEntrada1 = Console.ReadLine();
 
+            Console.WriteLine("\nNúmero da conta: ");
+
+            int numeroDaConta = int.Parse(Console.ReadLine());
+
+            int BuscarIndex = Clientes.FindIndex(x => x.Cpf == cpfEntrada1);
+
+            int BuscarIndex2 = Clientes.FindIndex(x => x.Conta == numeroDaConta);
+
+            DadosBancarios clienteEncontrado = Clientes.Find(x => x.Cpf == cpfEntrada1);
+            
             if (BuscarIndex == -1)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
@@ -342,48 +383,39 @@ namespace ByteBank.Entities
                 Console.ResetColor();
 
                 Thread.Sleep(3000);
+
+            } 
+            else if(BuscarIndex2 == -1)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+
+                Console.WriteLine("Não foi possível apresentar esta Conta");
+
+                Console.WriteLine("MOTIVO: Conta inválida.\n");
+
+                Console.ResetColor();
+
+                Thread.Sleep(3000);
             }
             else
             {
-                Console.WriteLine("[1]DEPÓSITO\n");
-
-                Console.WriteLine("Agora confirme o número da conta para efetuar o depósito: \n");
-
-                int NumeroDaConta = int.Parse(Console.ReadLine());
-
-                int BuscarIndex2 = Clientes.FindIndex(x => x.Conta == NumeroDaConta);
-
-                if (BuscarIndex2 == -1)
-                {
-                    Console.ForegroundColor = ConsoleColor.Red;
-
-                    Console.WriteLine("Não foi possível efetuar o depósito.");
-
-                    Console.WriteLine("MOTIVO: Conta não encontrada.");
-
-                    Console.ResetColor();
-
-                    Thread.Sleep(3000);
-                }
-                else
-                {
-                    Console.WriteLine("Qual o valor do Depósito? \n");
+                    Console.WriteLine("\nQual o valor do Depósito? ");
 
                     double valorDeposito = double.Parse(Console.ReadLine());
 
                     Console.ForegroundColor = ConsoleColor.Green;
 
-                    Console.WriteLine($"O valor {valorDeposito}, foi depositado com sucesso! ");
+                    Console.WriteLine($"\nO valor {valorDeposito.ToString("f2")}, foi depositado com sucesso! ");
 
                     Console.ResetColor();
 
-                    cpfEncontrado.Saldo += valorDeposito;
+                    clienteEncontrado.Saldo += valorDeposito;
 
                     Thread.Sleep(4000);
 
-                }
-
             }
+
+            
 
         }
 
@@ -391,9 +423,13 @@ namespace ByteBank.Entities
         {
             Console.Clear();
 
+            Console.ForegroundColor = ConsoleColor.Yellow;
+
             Console.WriteLine("[2]SAQUE\n");
 
-            Console.WriteLine("Digite o CPF do titular da conta: \n");
+            Console.ResetColor();
+
+            Console.WriteLine("Digite o CPF do titular da conta: ");
 
             string CpfParaSaque = Console.ReadLine();
 
@@ -417,56 +453,37 @@ namespace ByteBank.Entities
             else
             {
 
-                Console.WriteLine("Por favor, agora digite o número da conta: \n");
+                Console.WriteLine("\nConfirme sua senha: ");
 
-                int numeroDaConta = int.Parse(Console.ReadLine());
+                string senha = Console.ReadLine();
 
-                int BuscarIndex2 = Clientes.FindIndex(x => x.Conta == numeroDaConta);
-
-                if (BuscarIndex2 == -1)
-                {
-
-                    Console.ForegroundColor = ConsoleColor.Red;
-
-                    Console.WriteLine("Não foi possível sacar desta conta.");
-
-                    Console.WriteLine("MOTIVO: Conta não encontrada.");
-
-                    Console.ResetColor();
-
-                    Thread.Sleep(3000);
-                }
-                else
-                {
-
-                    Console.WriteLine("[2]SAQUE\n");
-
-                    Console.WriteLine("Confirme sua senha: \n");
-
-                    string senha = Console.ReadLine();
-
-                    int BuscarIndex3 = Clientes.FindIndex(x => x.Senha == senha);
+                int BuscarIndex3 = Clientes.FindIndex(x => x.Senha == senha);
+            
 
                     if (BuscarIndex3 == -1)
                     {
+                         Console.ForegroundColor = ConsoleColor.Red;
 
-                        Console.WriteLine("Não foi possível sacar desta conta.");
+                         Console.WriteLine("Não foi possível sacar desta conta.");
 
-                        Console.WriteLine("MOTIVO: Senha Inválida.");
+                         Console.WriteLine("MOTIVO: Senha Inválida.");
 
-                        Thread.Sleep(4000);
+                         Console.ResetColor();
+
+                         Thread.Sleep(4000);
                     }
                     else
                     {
 
-                        DadosBancarios cpfEncontrado = Clientes.Find(x => x.Cpf == CpfParaSaque);
+                        DadosBancarios clienteEncontrado = Clientes.Find(x => x.Cpf == CpfParaSaque);
 
-                        Console.WriteLine("Valor do saque: \n");
+                        Console.WriteLine("\nValor do saque: ");
 
                         double valorDoSaque = double.Parse(Console.ReadLine());
 
-                        if(valorDoSaque > cpfEncontrado.Saldo)
-                        {
+
+                    if(valorDoSaque > clienteEncontrado.Saldo)
+                    {
                             Console.ForegroundColor = ConsoleColor.Red; 
 
                             Console.WriteLine("Não foi possível sacar desta conta.");
@@ -476,48 +493,54 @@ namespace ByteBank.Entities
                             Thread.Sleep(3000);
 
                             Console.ResetColor();
-                        }
-
+                    }
+                    else
+                    {
                         Console.ForegroundColor = ConsoleColor.Green;
 
-                        Console.WriteLine("Saque efetuado com sucesso!");
+                        Console.WriteLine("\nSaque efetuado com sucesso!");
 
                         Console.ResetColor();
 
                         Thread.Sleep(4000);
 
-                        cpfEncontrado.Saldo -= valorDoSaque;
+                        clienteEncontrado.Saldo -= valorDoSaque;
                     }
 
-                }
-
+                        
+                    }
 
             }
 
 
         }
 
+
         public static void Transferencia(List<DadosBancarios> Clientes)
         {
             Console.Clear();
 
+            Console.ForegroundColor = ConsoleColor.Yellow;
+
             Console.WriteLine("[3] - TRANSFERENCIA: \n");
 
-            Console.WriteLine("Digite o número do seu CPF: \n");
+            Console.ResetColor();
 
-            string cpfTitular = Console.ReadLine();
 
-            int BuscarIndex = Clientes.FindIndex(x => x.Cpf == cpfTitular);
+            Console.WriteLine("Digite o CPF do titular da conta: ");
+
+            string cpfEntrada = Console.ReadLine();
+
+            int BuscarIndex = Clientes.FindIndex(x => x.Cpf == cpfEntrada);
 
             if (BuscarIndex == -1)
             {
-                Console.WriteLine("[3] - TRANSFERENCIA: \n");
 
                 Console.ForegroundColor = ConsoleColor.Red;
 
-                Console.WriteLine("Não foi possível efetuar a transferência.");
+                Console.WriteLine("\nNão foi possível efetuar a transferência.");
 
-                Console.WriteLine("MOTIVO: CPF não encontrado.");
+                Console.WriteLine("MOTIVO: Conta não encontrada.");
 
                 Thread.Sleep(4000);
 
@@ -526,24 +549,22 @@ namespace ByteBank.Entities
             else
             {
 
-                Console.WriteLine("[3] - TRANSFERENCIA: \n");
+                DadosBancarios cpfEncontrado = Clientes.Find(x => x.Cpf == cpfEntrada);
 
-                DadosBancarios cpfTitularEncontrado = Clientes.Find(x => x.Cpf == cpfTitular);
+                Console.WriteLine("\nSenha: ");
 
-                Console.WriteLine("Digite o número da sua conta: \n");
+                string senhaEntrada = Console.ReadLine();
 
-                int numeroDaConta = int.Parse(Console.ReadLine());
-
-                int BuscarIndex2 = Clientes.FindIndex(x => x.Conta == numeroDaConta);
+                int BuscarIndex2 = Clientes.FindIndex(x => x.Senha == senhaEntrada);
 
                 if (BuscarIndex2 == -1)
                 {
 
                     Console.ForegroundColor = ConsoleColor.Red;
 
-                    Console.WriteLine("Não foi possível efetuar a transferência.");
+                    Console.WriteLine("\nNão foi possível efetuar a transferência.");
 
-                    Console.WriteLine("MOTIVO: Conta não encontrada.");
+                    Console.WriteLine("MOTIVO: Senha inválida.");
 
                     Thread.Sleep(4000);
 
@@ -553,125 +574,100 @@ namespace ByteBank.Entities
                 else
                 {
 
+                    Console.WriteLine("\nDigite o número do CPF do titular da conta de destino: ");
 
-                    Console.WriteLine("Digite sua senha: \n");
+                    string cpfDestino = Console.ReadLine();
 
-                    string senha = Console.ReadLine();
-
-                    int BuscarIndex3 = Clientes.FindIndex(x => x.Senha == senha);
-
-                    if (BuscarIndex3 == -1)
-                    {
+                    int cpfClienteDestino = Clientes.FindIndex(x => x.Cpf == cpfDestino);
 
 
-                        Console.ForegroundColor = ConsoleColor.Red;
+                if (cpfClienteDestino == -1)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
 
-                        Console.WriteLine("Não foi possível efetuar a transferência.");
+                    Console.WriteLine("\nNão foi possível efetuar a transferência.");
 
-                        Console.WriteLine("MOTIVO: Senha inválida.");
+                    Console.WriteLine("MOTIVO: Cliente não encontrado.");
 
-                        Thread.Sleep(4000);
+                    Thread.Sleep(4000);
 
-                        Console.ResetColor();
-                    }
-                    else
-                    {
+                    Console.ResetColor();
+                }
+                else
+                {
 
-                        Console.WriteLine("Digite o número do CPF do titular da conta de destino: \n");
+                    Console.WriteLine("\nDigite o número da conta de destino: ");
 
-                        string cpfDestino = Console.ReadLine();
+                    int conta = int.Parse(Console.ReadLine());
 
-                        int cpfClienteDestino = Clientes.FindIndex(x => x.Cpf == cpfDestino);
+                    int BuscarIndex5 = Clientes.FindIndex(x => x.Conta == conta);
 
-                        if (cpfClienteDestino == -1)
-                        {
+                if (BuscarIndex5 == -1)
+                {
 
+                    Console.ForegroundColor = ConsoleColor.Red;
 
-                            Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("\nNão foi possível efetuar a transferência.");
 
-                            Console.WriteLine("Não foi possível efetuar a transferência.");
+                    Console.WriteLine("MOTIVO: Conta não encontrada.");
 
-                            Console.WriteLine("MOTIVO: Cliente não encontrado.");
+                    Thread.Sleep(4000);
 
-                            Thread.Sleep(4000);
+                    Console.ResetColor();
+                 }
+                else
+                {
 
-                            Console.ResetColor();
-                        }
-                        else
-                        {
+                    Console.WriteLine("\nDigite o valor da transferência: ");
 
-                            Console.WriteLine("Digite o número da conta de destino: \n");
-
-                            int conta = int.Parse(Console.ReadLine());
-
-                            int BuscarIndex5 = Clientes.FindIndex(x => x.Conta == conta);
-
-                            if (BuscarIndex5 == -1)
-                            {
-
-                                Console.ForegroundColor = ConsoleColor.Red;
-
-                                Console.WriteLine("Não foi possível efetuar a transferência.");
-
-                                Console.WriteLine("MOTIVO: Conta não encontrada.");
-
-                                Thread.Sleep(4000);
-
-                                Console.ResetColor();
-                            }
-                            else
-                            {
-
-                                Console.WriteLine("Digite o valor da transferência: \n");
-
-                                double valorTransferido = double.Parse(Console.ReadLine());
+                    double valorTransferido = double.Parse(Console.ReadLine());
 
 
-                                DadosBancarios cpfParaTranferencia = Clientes.Find(x => x.Cpf == cpfTitular);
+                    DadosBancarios cliente = Clientes.Find(x => x.Cpf == cpfEntrada);
 
-                                if(valorTransferido > cpfParaTranferencia.Saldo)
-                                {
+                if(valorTransferido > cpfEncontrado.Saldo)
+                {
 
-                                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.ForegroundColor = ConsoleColor.Red;
 
-                                    Console.WriteLine("Não foi possível efetuar a transferência.");
+                    Console.WriteLine("\nNão foi possível efetuar a transferência.");
 
-                                    Console.WriteLine("MOTIVO: Saldo insuficiente.");
+                    Console.WriteLine("MOTIVO: Saldo insuficiente.");
 
-                                    Thread.Sleep(4000);
+                    Thread.Sleep(4000);
 
-                                    Console.ResetColor();
-                                }
-                                else
-                                {
-                                    cpfParaTranferencia.Saldo -= valorTransferido;
+                    Console.ResetColor();
+                }
+                else
+                {
+                    cliente.Saldo -= valorTransferido;
 
-                                    DadosBancarios CpfDestino = Clientes.Find(x => x.Cpf == cpfDestino);
+                    DadosBancarios CpfDestino = Clientes.Find(x => x.Cpf == cpfDestino);
 
 
-                                    CpfDestino.Saldo += valorTransferido;
+                    CpfDestino.Saldo += valorTransferido;
 
-                                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.ForegroundColor = ConsoleColor.Green;
 
-                                    Console.WriteLine("Transferência efetuada com sucesso.");
+                    Console.WriteLine("\nTransferência efetuada com sucesso.");
 
-                                    Thread.Sleep(4000);
+                    Thread.Sleep(4000);
 
-                                    Console.ResetColor();
-                                }
+                    Console.ResetColor();
+                 }
 
                                 
 
-                            }
-
-
-                        }
-
-                    }
                 }
+
+
             }
+
+        }
+    }
+}
         }
 
 
     }
-}
+

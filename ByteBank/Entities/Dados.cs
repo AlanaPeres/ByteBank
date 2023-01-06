@@ -12,10 +12,10 @@
 
         public int Conta;
 
-        public string Email;
+       
 
 
-        public DadosBancarios(string titular, string cpf, string senha, double saldo, int conta, string email)
+        public DadosBancarios(string titular, string cpf, string senha, double saldo, int conta)
         {
             Titular = titular;
 
@@ -27,7 +27,7 @@
 
             Conta = conta;
 
-            Email = email;
+           
 
 
         }
